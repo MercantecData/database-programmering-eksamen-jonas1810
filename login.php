@@ -1,14 +1,14 @@
 <?php
 session_start();
 $usrname = $_POST["username"];
-$password = $_POST["password"];
+$password = md5($_POST["password"]);
 
-$conn = mysqli_connect("localhost", "root", "", "DatabaseExam");
+$conn = mysqli_connect("localhost", "root", "", "databaseexam");
 
 $sql = "SELECT id, name FROM users WHERE username = '$usrname' AND password = '$password'";
 echo $sql . "<br>";
 $result = $conn->query($sql);
-$row = $result->fetch_assoc()
+$row = $result->fetch_assoc();
 var_dump($row);
 $id = $row["id"];
 $name = $row["name"];
